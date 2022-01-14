@@ -1,4 +1,3 @@
-import 'package:blog_client/main.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -8,7 +7,54 @@ class WelcomePage extends StatefulWidget {
   _WelcomePageState createState() => _WelcomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _WelcomePageState extends State<WelcomePage>
+    with TickerProviderStateMixin {
+  late AnimationController _controller1;
+  late Animation<Offset> animation1;
+
+  late AnimationController _controller2;
+  late Animation<Offset> animation2;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    //animation 1
+    _controller1 = AnimationController(
+      duration: Duration(milliseconds: 1000),
+      vsync: this,
+    );
+    animation1 = Tween<Offset>(
+      begin: Offset(1.0, 8.0),
+      end: Offset(0.0, 0.0),
+    ).animate(
+      CurvedAnimation(parent: _controller1, curve: Curves.easeOut),
+    );
+
+    //animation 2
+    _controller2 = AnimationController(
+      duration: Duration(milliseconds: 2000),
+      vsync: this,
+    );
+    animation2 = Tween<Offset>(
+      begin: Offset(0.0, 8.0),
+      end: Offset(0.0, 0.0),
+    ).animate(
+      CurvedAnimation(parent: _controller2, curve: Curves.elasticInOut),
+    );
+    _controller1.forward();
+    _controller2.forward();
+  }
+
+  @override
+  void dispose() {
+    // ignore: todo
+    // TODO: implement dispose
+    super.dispose();
+    _controller1.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,46 +74,58 @@ class _WelcomePageState extends State<WelcomePage> {
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 40),
           child: Column(
             children: [
-              const Text(
-                "BLOG APP",
-                style: TextStyle(
-                  fontSize: 38,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 2,
+              SlideTransition(
+                position: animation1,
+                child: const Text(
+                  "BLOG APP",
+                  style: TextStyle(
+                    fontSize: 38,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 2,
+                  ),
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 9,
+                height: MediaQuery.of(context).size.height / 7,
               ),
-              const Text(
-                "A Way to Inspire...",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 26,
-                    letterSpacing: 2),
+              SlideTransition(
+                position: animation1,
+                child: const Text(
+                  "A Way to Inspire...",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 26,
+                      letterSpacing: 2),
+                ),
               ),
               SizedBox(
                 height: 5,
               ),
-              const Text(
-                "Empower..",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 26,
-                    letterSpacing: 2),
+              SlideTransition(
+                position: animation1,
+                child: const Text(
+                  "Empower..",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 26,
+                      letterSpacing: 2),
+                ),
               ),
-               SizedBox(
+              SizedBox(
                 height: 5,
               ),
-              const Text(
-                "and Educate The World ",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 26,
-                    letterSpacing: 2),
+              SlideTransition(
+                position: animation1,
+                child: const Text(
+                  "and Educate The World ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 26,
+                      letterSpacing: 2),
+                ),
               ),
               SizedBox(
                 height: 50,
@@ -82,30 +140,32 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
               boxContainer("assets/email.jpg", "Sign up with Email"),
               SizedBox(
-                    height: 30,
-                  ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    "Already have an account?",
-                    style: TextStyle(
-                      color: Colors.blueGrey,
-                      fontSize: 17,
+                height: 30,
+              ),
+              SlideTransition(
+                position: animation2,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "Already have an account?",
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontSize: 17,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "SignIN",
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold
+                    SizedBox(
+                      width: 10,
                     ),
-                  ),
-                ],
+                    Text(
+                      "SignIN",
+                      style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               )
             ],
           ),
@@ -114,29 +174,30 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
-  Widget boxContainer(String path, String text) {
-    return SizedBox(
-      height: 40,
-      width: MediaQuery.of(context).size.width - 140,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-        child: Row(
-          children: [
-            Image.asset(
-              path,
-              height: 20,
-              width: 20,
+  Widget boxContainer(String path, String text) => SlideTransition(
+        position: animation2,
+        child: Container(
+          height: 40,
+          width: MediaQuery.of(context).size.width - 140,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            child: Row(
+              children: [
+                Image.asset(
+                  path,
+                  height: 20,
+                  width: 20,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  text,
+                  style: TextStyle(fontSize: 16, color: Colors.black87),
+                )
+              ],
             ),
-            SizedBox(
-              width: 20,
-            ),
-            Text(
-              text,
-              style: TextStyle(fontSize: 16, color: Colors.black87),
-            )
-          ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
