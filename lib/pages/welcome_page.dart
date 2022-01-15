@@ -1,3 +1,4 @@
+import 'package:blog_client/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _WelcomePageState extends State<WelcomePage>
 
   @override
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
 
     //animation 1
@@ -130,15 +131,15 @@ class _WelcomePageState extends State<WelcomePage>
               SizedBox(
                 height: 50,
               ),
-              boxContainer("assets/google.png", "Sign up with Google"),
+              boxContainer("assets/google.png", "Sign up with Google",null),
               SizedBox(
                 height: 20,
               ),
-              boxContainer("assets/fb.png", "Sign up with Facebook"),
+              boxContainer("assets/fb.png", "Sign up with Facebook",null),
               SizedBox(
                 height: 20,
               ),
-              boxContainer("assets/email.jpg", "Sign up with Email"),
+              boxContainer("assets/email.jpg", "Sign up with Email",onEmailClick()),
               SizedBox(
                 height: 30,
               ),
@@ -174,28 +175,37 @@ class _WelcomePageState extends State<WelcomePage>
     );
   }
 
-  Widget boxContainer(String path, String text) => SlideTransition(
+  onEmailClick() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => SignUpPage(),
+    ));
+  }
+
+  Widget boxContainer(String path, String text, onClick) => SlideTransition(
         position: animation2,
-        child: Container(
-          height: 40,
-          width: MediaQuery.of(context).size.width - 140,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-            child: Row(
-              children: [
-                Image.asset(
-                  path,
-                  height: 20,
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  text,
-                  style: TextStyle(fontSize: 16, color: Colors.black87),
-                )
-              ],
+        child: InkWell(
+          onTap: onClick,
+          child: SizedBox(
+            height: 40,
+            width: MediaQuery.of(context).size.width - 140,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              child: Row(
+                children: [
+                  Image.asset(
+                    path,
+                    height: 20,
+                    width: 20,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    text,
+                    style: TextStyle(fontSize: 16, color: Colors.black87),
+                  )
+                ],
+              ),
             ),
           ),
         ),
