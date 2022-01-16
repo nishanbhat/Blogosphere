@@ -25,7 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Sign up with email",
+              "Sign Up with Email",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -35,9 +35,31 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               height: 20,
             ),
-            usernameTextField("Username"),
-            usernameTextField("email"),
-            usernameTextField("password"),
+            usernameTextField(),
+            emailTextField(),
+            passwordTextField(),
+            SizedBox(
+                height: 20,
+              ),
+
+               Container(
+                        width: 150,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.black87
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
 
           ],
         ),
@@ -46,7 +68,9 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 }
 
-Widget usernameTextField(String s) {
+
+
+Widget usernameTextField() {
   return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10.0),
       child: Column(
@@ -101,6 +125,10 @@ Widget passwordTextField() {
             // controller: _usernameController,
             decoration: InputDecoration(
               // errorText: validate ? null : errorText,
+              helperText: "Password length should not exceed 8 characters",
+              helperStyle: TextStyle(
+                fontSize: 10,
+              ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.black,
