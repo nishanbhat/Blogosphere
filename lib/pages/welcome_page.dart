@@ -1,5 +1,6 @@
-import 'package:blog_client/pages/signup_page.dart';
 import 'package:flutter/material.dart';
+import 'package:blog_client/pages/signup_page.dart';
+
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _WelcomePageState extends State<WelcomePage>
 
   late AnimationController _controller2;
   late Animation<Offset> animation2;
-
+  
   @override
   void initState() {
     
@@ -139,7 +140,7 @@ class _WelcomePageState extends State<WelcomePage>
               SizedBox(
                 height: 20,
               ),
-              boxContainer("assets/email.jpg", "Sign up with Email",onEmailClick()),
+              boxContainer("assets/email.jpg", "Sign up with Email",onEmailClick),
               SizedBox(
                 height: 30,
               ),

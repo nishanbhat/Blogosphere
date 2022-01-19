@@ -1,6 +1,6 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
-
+import 'package:blog_client/network_handler.dart';
 import 'package:flutter/material.dart';
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -12,6 +12,15 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool vis = true;
   final _globalKey= GlobalKey<FormState>();
+  NetworkHandler network_handler = NetworkHandler();
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  late String errorText;
+  bool validate = false;
+  bool circular = false;
+  // final storage = new FlutterSecureStorage();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,15 +57,34 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 20,
               ),
               InkWell(
-                onTap: () {
+                onTap: () async {
+                  setState(() {
+                    circular = true;
+                  });
+                  await checkUser(); 
                   if(_globalKey.currentState!.validate())
                   {
-                    //send data to the rest erver
+                    // we will send the data to rest server
+                    Map<String, String> data = {
+                      "username": _usernameController.text,
+                      "email": _emailController.text,
+                      "password": _passwordController.text,
+                    };
                     // ignore: avoid_print
-                    print("validated");
+                    print(data);
+                    await networkHandler.post("/user/register", data);
+                    setState(() {
+                      circular=false;
+                    });
+                  }
+                  else{
+                    setState(() {
+                      circular=false;
+                    });
                   }
                 },
-                child: Container(
+                child: circular? CircularProgressIndicator()
+                :Container(
                   width: 150,
                   height: 50,
                   decoration: BoxDecoration(
@@ -80,6 +108,31 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
+
+    checkUser() async {
+    if (_usernameController.text.length == 0) {
+      setState(() {
+        // circular = false;
+        validate = false;
+        errorText = "Username Can't be empty";
+      });
+    } else {
+      var response = await networkHandler
+          .get("/user/checkUsername/${_usernameController.text}");
+      if (response['Status']) {
+        setState(() {
+          // circular = false;
+          validate = false;
+          errorText = "Username already taken";
+        });
+      } else {
+        setState(() {
+          // circular = false;
+          validate = true;
+        });
+      }
+    }
+  }
 }
 
 Widget usernameTextField() {
@@ -90,13 +143,9 @@ Widget usernameTextField() {
         children: [
           Text("Username"),
           TextFormField(
-            // controller: _usernameController,
-            validator: (value) {
-              if (value!.isEmpty) return "Username can't be empty";
-              return null;
-            },
+            controller: _usernameController,
             decoration: InputDecoration(
-              // errorText: validate ? null : errorText,
+              errorText: validate ? null : errorText,
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.black,
