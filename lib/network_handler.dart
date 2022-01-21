@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:logger/logger.dart';
 
 class NetworkHandler {
@@ -25,20 +27,6 @@ class NetworkHandler {
     log.i(response.statusCode);
   }
 
-  Future<http.Response> post(String url, Map<String, String> body) async {
-    String? token = await storage.read(key: "token");
-    url = formater(url);
-    log.d(body);
-    var response = await http.post(
-      url,
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $token"
-      },
-      body: json.encode(body),
-    );
-    return response;
-  }
 
   Future<http.Response> patch(String url, Map<String, String> body) async {
     String? token = await storage.read(key: "token");
@@ -55,20 +43,6 @@ class NetworkHandler {
     return response;
   }
 
-  Future<http.Response> post1(String url, var body) async {
-    String? token = await storage.read(key: "token");
-    url = formater(url);
-    log.d(body);
-    var response = await http.post(
-      url,
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer $token"
-      },
-      body: json.encode(body),
-    );
-    return response;
-  }
 
   Future<http.StreamedResponse> patchImage(String url, String filepath) async {
     url = formater(url);
@@ -91,4 +65,6 @@ class NetworkHandler {
     String url = formater("/uploads//$imageName.jpg");
     return NetworkImage(url);
   }
+
+  post(String s, Map<String, String> data) {}
 }

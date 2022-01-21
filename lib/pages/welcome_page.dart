@@ -6,7 +6,7 @@ import 'package:blog_client/pages/signup_page.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 class WelcomePage extends StatefulWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+   const WelcomePage({Key? key}) : super(key: key);
 
   @override
   _WelcomePageState createState() => _WelcomePageState();
