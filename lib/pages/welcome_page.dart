@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:blog_client/pages/signin_page.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:blog_client/pages/signup_page.dart';
@@ -18,7 +19,7 @@ class _WelcomePageState extends State<WelcomePage>
   late AnimationController _controller2;
   late Animation<Offset> animation2;
   bool _isLogin = false;
-  Map data;
+  late Map data;
   final facebookLogin = FacebookLogin();
 
   get http => null;
@@ -165,12 +166,21 @@ class _WelcomePageState extends State<WelcomePage>
                     SizedBox(
                       width: 10,
                     ),
-                    Text(
-                      "SignIN",
-                      style: TextStyle(
+                    InkWell(
+                      onTap: () 
+                      {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SignInPage(key: null,),
+                        ));
+                      },
+                      child: Text(
+                        "Sign In",
+                        style: TextStyle(
                           color: Colors.green,
                           fontSize: 17,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -247,7 +257,6 @@ class _WelcomePageState extends State<WelcomePage>
       );
 }
 
-class FacebookLogin {
-}
+class FacebookLogin {}
 
 class FacebookLoginStatus {}

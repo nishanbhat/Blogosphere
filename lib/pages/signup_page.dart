@@ -12,6 +12,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool vis = true;
   final _globalKey= GlobalKey<FormState>();
+  // ignore: non_constant_identifier_names
   NetworkHandler network_handler = NetworkHandler();
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -72,7 +73,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     };
                     // ignore: avoid_print
                     print(data);
-                    await networkHandler.post("/user/register", data);
+                    await network_handler.post("/user/register", data);
                     setState(() {
                       circular=false;
                     });
@@ -110,14 +111,14 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
     checkUser() async {
-    if (_usernameController.text.length == 0) {
+    if (_usernameController.text.isEmpty) {
       setState(() {
         // circular = false;
         validate = false;
         errorText = "Username Can't be empty";
       });
     } else {
-      var response = await networkHandler
+      var response = await network_handler
           .get("/user/checkUsername/${_usernameController.text}");
       if (response['Status']) {
         setState(() {
