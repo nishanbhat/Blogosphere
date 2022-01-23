@@ -1,9 +1,6 @@
-import 'dart:convert';
 import 'package:blog_client/pages/signin_page.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:blog_client/pages/signup_page.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 class WelcomePage extends StatefulWidget {
    const WelcomePage({Key? key}) : super(key: key);
@@ -18,9 +15,7 @@ class _WelcomePageState extends State<WelcomePage>
   late Animation<Offset> animation1;
   late AnimationController _controller2;
   late Animation<Offset> animation2;
-  bool _isLogin = false;
   late Map data;
-  final facebookLogin = FacebookLogin();
 
   get http => null;
 
@@ -142,7 +137,7 @@ class _WelcomePageState extends State<WelcomePage>
               SizedBox(
                 height: 20,
               ),
-              boxContainer("assets/fb.png", "Sign up with Facebook", onFBLogin),
+              // boxContainer("assets/fb.png", "Sign up with Facebook", onFBLogin),
               SizedBox(
                 height: 20,
               ),
@@ -155,7 +150,7 @@ class _WelcomePageState extends State<WelcomePage>
                 position: animation2,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children:  [
                     Text(
                       "Already have an account?",
                       style: TextStyle(
@@ -167,8 +162,7 @@ class _WelcomePageState extends State<WelcomePage>
                       width: 10,
                     ),
                     InkWell(
-                      onTap: () 
-                      {
+                      onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => SignInPage(key: null,),
                         ));
@@ -192,33 +186,33 @@ class _WelcomePageState extends State<WelcomePage>
     );
   }
 
-  onFBLogin() async {
-    final result = await facebookLogin.logIn(['email']);
-    switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        final token = result.accessToken;
-        final response = await http.get(
-            "https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=$token");
-        final data1 = json.decode(response.body);
-        // ignore: avoid_print
-        print(data);
-        setState(() {
-          _isLogin = true;
-          data = data1;
-        });
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        setState(() {
-          _isLogin = false;
-        });
-        break;
-      case FacebookLoginStatus.error:
-        setState(() {
-          _isLogin = false;
-        });
-        break;
-    }
-  }
+  // onFBLogin() async {
+  //   final result = await facebookLogin.logIn(['email']);
+  //   switch (result.status) {
+  //     case FacebookLoginStatus.loggedIn:
+  //       final token = result.accessToken;
+  //       final response = await http.get(
+  //           "https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=$token");
+  //       final data1 = json.decode(response.body);
+  //       // ignore: avoid_print
+  //       print(data);
+  //       setState(() {
+  //         _isLogin = true;
+  //         data = data1;
+  //       });
+  //       break;
+  //     case FacebookLoginStatus.cancelledByUser:
+  //       setState(() {
+  //         _isLogin = false;
+  //       });
+  //       break;
+  //     case FacebookLoginStatus.error:
+  //       setState(() {
+  //         _isLogin = false;
+  //       });
+  //       break;
+  //   }
+  // }
 
   onEmailClick() {
     Navigator.of(context).push(MaterialPageRoute(
@@ -257,6 +251,4 @@ class _WelcomePageState extends State<WelcomePage>
       );
 }
 
-class FacebookLogin {}
 
-class FacebookLoginStatus {}

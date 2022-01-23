@@ -5,7 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../network_handler.dart';
 
 class SignInPage extends StatefulWidget {
-  const SignInPage({required Key key}) : super(key: key);
+  const SignInPage({  Key? key}) : super(key: key);
 
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -15,8 +15,8 @@ class _SignInPageState extends State<SignInPage> {
   bool vis = true;
   final _globalkey = GlobalKey<FormState>();
   NetworkHandler networkHandler = NetworkHandler();
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final  _usernameController = TextEditingController();
+  final  _passwordController = TextEditingController();
   late String errorText;
   bool validate = false;
   bool circular = false;
@@ -120,7 +120,7 @@ class _SignInPageState extends State<SignInPage> {
                     if (response.statusCode == 200 ||
                         response.statusCode == 201) {
                       Map<String, dynamic> output = json.decode(response.body);
-                      print(output["token"]);
+                      debugPrint(output["token"]);
                       await storage.write(key: "token", value: output["token"]);
                       setState(() {
                         validate = true;

@@ -1,5 +1,6 @@
 import 'package:blog_client/network_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 
 class SignUpPage extends StatefulWidget {
@@ -14,13 +15,13 @@ class _SignUpPageState extends State<SignUpPage> {
   final _globalKey= GlobalKey<FormState>();
   // ignore: non_constant_identifier_names
   NetworkHandler network_handler = NetworkHandler();
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final  _usernameController = TextEditingController();
+  final  _emailController = TextEditingController();
+  final  _passwordController = TextEditingController();
   late String errorText;
   bool validate = false;
   bool circular = false;
-  // final storage = new FlutterSecureStorage();
+  final storage = FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,7 @@ class _SignUpPageState extends State<SignUpPage> {
               SizedBox(
                 height: 20,
               ),
-              usernameTextField(),
+              usernameTextField(_usernameController,validate,errorText),
               emailTextField(),
               passwordTextField(),
               SizedBox(
@@ -136,7 +137,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 }
 
-Widget usernameTextField() {
+Widget usernameTextField(_usernameController,validate,errorText) {
   return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10.0),
       child: Column(

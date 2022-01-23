@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -15,7 +14,7 @@ class NetworkHandler {
     url = formater(url);
     // /user/register
     var response = await http.get(
-      url,
+      Uri.parse(url),
       headers: {"Authorization": "Bearer $token"},
     );
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -33,7 +32,7 @@ class NetworkHandler {
     url = formater(url);
     log.d(body);
     var response = await http.patch(
-      url,
+      Uri.parse(url),
       headers: {
         "Content-type": "application/json",
         "Authorization": "Bearer $token"
