@@ -1,7 +1,9 @@
 import 'package:blog_client/pages/welcome_page.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:blog_client/network_handler.dart';
+import 'package:blog_client/screen/home_screen.dart';
+import 'package:blog_client/screen/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import '../network_handler.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentState = 0;
   List<Widget> widgets = [HomeScreen(), ProfileScreen()];
-  List<String> titleString = ["Home Page"];
+  List<String> titleString = ["Home Page", "Profile Page"];
   final storage = FlutterSecureStorage();
   NetworkHandler networkHandler = NetworkHandler();
   String username = "";
@@ -171,4 +173,3 @@ class _HomePageState extends State<HomePage> {
         (route) => false);
   }
 }
-
