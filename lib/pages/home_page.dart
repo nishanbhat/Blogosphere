@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentState = 0;
-  // List<Widget> widgets = [HomeScreen(), ProfileScreen()];
+  List<Widget> widgets = [HomeScreen(), ProfileScreen()];
   List<String> titleString = ["Home Page"];
   final storage = FlutterSecureStorage();
   NetworkHandler networkHandler = NetworkHandler();
@@ -111,18 +111,18 @@ class _HomePageState extends State<HomePage> {
           IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
         ],
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.teal,
-      //   onPressed: () {
-      //     Navigator.of(context)
-      //         .push(MaterialPageRoute(builder: (context) => AddBlog()));
-      //   },
-      //   child: Text(
-      //     "+",
-      //     style: TextStyle(fontSize: 40),
-      //   ),
-      // ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.teal,
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddBlog()));
+        },
+        child: Text(
+          "+",
+          style: TextStyle(fontSize: 40),
+        ),
+      ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.teal,
         shape: CircularNotchedRectangle(),
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      // body: Widgets[currentState],
+      body: widgets[currentState],
     );
   }
 
@@ -171,3 +171,4 @@ class _HomePageState extends State<HomePage> {
         (route) => false);
   }
 }
+
