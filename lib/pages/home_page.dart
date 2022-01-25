@@ -1,7 +1,3 @@
-// import 'package:blogapp/Blog/addBlog.dart';
-// import 'package:blogapp/Pages/WelcomePage.dart';
-// import 'package:blogapp/Screen/HomeScreen.dart';
-// import 'package:blogapp/Profile/ProfileScreen.dart';
 import 'package:blog_client/pages/welcome_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:blog_client/network_handler.dart';
@@ -32,7 +28,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     checkProfile();
   }
