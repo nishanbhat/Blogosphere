@@ -173,3 +173,6 @@ class _HomePageState extends State<HomePage> {
         (route) => false);
   }
 }
+
+class AddBlog {
+}
