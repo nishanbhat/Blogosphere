@@ -1,6 +1,7 @@
+import 'dart:html';
 import 'package:blog_client/pages/home_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../network_handler.dart';
 
 class CreatProfile extends StatefulWidget {
@@ -13,14 +14,14 @@ class CreatProfile extends StatefulWidget {
 class _CreatProfileState extends State<CreatProfile> {
   final networkHandler = NetworkHandler();
   bool circular = false;
-  // PickedFile _imageFile;
+  PickedFile _imageFile;
   final _globalkey = GlobalKey<FormState>();
   final _name = TextEditingController();
   final _profession = TextEditingController();
   final _dob = TextEditingController();
   final _title = TextEditingController();
   final _about = TextEditingController();
-  // final ImagePicker _picker = ImagePicker();
+  final ImagePicker _picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,12 +125,12 @@ class _CreatProfileState extends State<CreatProfile> {
   Widget imageProfile() {
     return Center(
       child: Stack(children: <Widget>[
-        // CircleAvatar(
-        //   radius: 80.0,
-        //   backgroundImage: _imageFile == null
-        //       ? AssetImage("assets/profile.jpeg")
-        //       : FileImage(File(_imageFile.path)),
-        // ),
+        CircleAvatar(
+          radius: 80.0,
+          backgroundImage: _imageFile == null
+              ? AssetImage("assets/prfile.png")
+              : FileImage(File(_imageFile.path)),
+        ),
         Positioned(
           bottom: 20.0,
           right: 20.0,
@@ -170,35 +171,35 @@ class _CreatProfileState extends State<CreatProfile> {
           SizedBox(
             height: 20,
           ),
-          // Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-          //   FlatButton.icon(
-          //     icon: Icon(Icons.camera),
-          //     onPressed: () {
-          //       takePhoto(ImageSource.camera);
-          //     },
-          //     label: Text("Camera"),
-          //   ),
-          //   FlatButton.icon(
-          //     icon: Icon(Icons.image),
-          //     onPressed: () {
-          //       takePhoto(ImageSource.gallery);
-          //     },
-          //     label: Text("Gallery"),
-          //   ),
-          // ])
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            FlatButton.icon(
+              icon: Icon(Icons.camera),
+              onPressed: () {
+                takePhoto(ImageSource.camera);
+              },
+              label: Text("Camera"),
+            ),
+            FlatButton.icon(
+              icon: Icon(Icons.image),
+              onPressed: () {
+                takePhoto(ImageSource.gallery);
+              },
+              label: Text("Gallery"),
+            ),
+          ])
         ],
       ),
     );
   }
 
-  // void takePhoto(ImageSource source) async {
-  //   final pickedFile = await _picker.getImage(
-  //     source: source,
-  //   );
-  //   setState(() {
-  //     _imageFile = pickedFile;
-  //   });
-  // }
+  void takePhoto(ImageSource source) async {
+    final pickedFile = await _picker.getImage(
+      source: source,
+    );
+    setState(() {
+      _imageFile = pickedFile;
+    });
+  }
 
   Widget nameTextField() {
     return TextFormField(

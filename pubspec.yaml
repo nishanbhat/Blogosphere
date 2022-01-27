@@ -37,7 +37,7 @@ dependencies:
   http: ^0.13.4
   google_fonts: ^2.3.0
   flutter_secure_storage: ^5.0.2
-  flutter_facebook_login: ^3.0.0
+  image_picker: ^0.8.4+9
 
 
 dev_dependencies:
