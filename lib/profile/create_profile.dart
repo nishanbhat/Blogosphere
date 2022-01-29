@@ -14,7 +14,7 @@ class CreatProfile extends StatefulWidget {
 class _CreatProfileState extends State<CreatProfile> {
   final networkHandler = NetworkHandler();
   bool circular = false;
-  PickedFile _imageFile;
+  late PickedFile _imageFile;
   final _globalkey = GlobalKey<FormState>();
   final _name = TextEditingController();
   final _profession = TextEditingController();
@@ -127,6 +127,7 @@ class _CreatProfileState extends State<CreatProfile> {
       child: Stack(children: <Widget>[
         CircleAvatar(
           radius: 80.0,
+          // ignore: unnecessary_null_comparison
           backgroundImage: _imageFile == null
               ? AssetImage("assets/prfile.png")
               : FileImage(File(_imageFile.path)),
@@ -197,7 +198,7 @@ class _CreatProfileState extends State<CreatProfile> {
       source: source,
     );
     setState(() {
-      _imageFile = pickedFile;
+      _imageFile = pickedFile!;
     });
   }
 
