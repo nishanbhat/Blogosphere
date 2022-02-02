@@ -108,10 +108,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     ),
                   ),
                 ),
-                // Divider(
-                //   height: 50,
-                //   thickness: 1.5,
-                // ),
+
               ],
             ),
           ),

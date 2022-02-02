@@ -137,7 +137,7 @@ class _WelcomePageState extends State<WelcomePage>
               SizedBox(
                 height: 20,
               ),
-              // boxContainer("assets/fb.png", "Sign up with Facebook", onFBLogin),
+              
               SizedBox(
                 height: 20,
               ),
@@ -186,33 +186,6 @@ class _WelcomePageState extends State<WelcomePage>
     );
   }
 
-  // onFBLogin() async {
-  //   final result = await facebookLogin.logIn(['email']);
-  //   switch (result.status) {
-  //     case FacebookLoginStatus.loggedIn:
-  //       final token = result.accessToken;
-  //       final response = await http.get(
-  //           "https://graph.facebook.com/v2.12/me?fields=name,picture,email&access_token=$token");
-  //       final data1 = json.decode(response.body);
-  //       // ignore: avoid_print
-  //       print(data);
-  //       setState(() {
-  //         _isLogin = true;
-  //         data = data1;
-  //       });
-  //       break;
-  //     case FacebookLoginStatus.cancelledByUser:
-  //       setState(() {
-  //         _isLogin = false;
-  //       });
-  //       break;
-  //     case FacebookLoginStatus.error:
-  //       setState(() {
-  //         _isLogin = false;
-  //       });
-  //       break;
-  //   }
-  // }
 
   onEmailClick() {
     Navigator.of(context).push(MaterialPageRoute(
