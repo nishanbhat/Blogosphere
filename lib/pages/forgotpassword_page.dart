@@ -1,11 +1,10 @@
-import 'dart:convert';
 import "package:flutter/material.dart";
 import 'package:blog_client/pages/welcome_page.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:blog_client/network_handler.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
-  ForgotPasswordPage({Key? key}) : super(key: key);
+  const ForgotPasswordPage({Key? key}) : super(key: key);
 
   @override
   _ForgotPasswordPageState createState() => _ForgotPasswordPageState();

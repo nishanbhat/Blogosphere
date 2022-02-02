@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../network_handler.dart';
 
-// import 'MainProfile.dart';
-
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 

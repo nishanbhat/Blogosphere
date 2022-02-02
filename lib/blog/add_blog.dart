@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:blog_client/pages/home_page.dart';
 
 
 class AddBlog extends StatefulWidget {
@@ -12,8 +11,8 @@ class AddBlog extends StatefulWidget {
 class _AddBlogState extends State<AddBlog> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(drawer: Text("Add Blog")
-      
+    return Scaffold(
+      body: Text("Blog")
     );
   }
 }
