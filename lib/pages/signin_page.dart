@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:blog_client/pages/signup_page.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../network_handler.dart';
+import '../NetworkHandler.dart';
 import 'forgotpassword_page.dart';
 import 'home_page.dart';
 

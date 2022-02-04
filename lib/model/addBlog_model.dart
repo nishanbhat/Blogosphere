@@ -15,14 +15,14 @@ class AddBlogModel {
   String body;
 
   AddBlogModel(
-      {this.coverImage,
-      this.count,
-      this.share,
-      this.comment,
-      this.id,
-      this.username,
-      this.body,
-      this.title});
+      {required this.coverImage,
+      required this.count,
+      required this.share,
+      required this.comment,
+      required this.id,
+      required this.username,
+      required this.body,
+      required this.title});
   factory AddBlogModel.fromJson(Map<String, dynamic> json) =>
       _$AddBlogModelFromJson(json);
   Map<String, dynamic> toJson() => _$AddBlogModelToJson(this);

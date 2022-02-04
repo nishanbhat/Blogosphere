@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^2.3.0
   flutter_secure_storage: ^5.0.2
   image_picker: ^0.8.4+9
+  json_serializable: ^6.1.4
 
 
 dev_dependencies:

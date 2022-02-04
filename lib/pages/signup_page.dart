@@ -1,4 +1,4 @@
-import 'package:blog_client/network_handler.dart';
+import 'package:blog_client/NetworkHandler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 

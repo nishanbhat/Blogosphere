@@ -3,7 +3,7 @@ import 'package:blog_client/screen/home_screen.dart';
 import 'package:blog_client/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../network_handler.dart';
+import '../NetworkHandler.dart';
 
 
 class HomePage extends StatefulWidget {

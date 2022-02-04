@@ -2,7 +2,7 @@ import 'dart:html';
 import 'package:blog_client/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../network_handler.dart';
+import '../NetworkHandler.dart';
 
 class CreatProfile extends StatefulWidget {
   const CreatProfile({Key? key}) : super(key: key);
