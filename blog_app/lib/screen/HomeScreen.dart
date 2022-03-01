@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:blog_app/blog/Blogs.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:sensors_plus/sensors_plus.dart';
 
 import '../blog/addBlog.dart';
 

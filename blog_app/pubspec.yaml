@@ -34,6 +34,7 @@ dependencies:
   jiffy: ^4.1.0
   local_auth: ^1.1.11
   logger: ^0.9.4
+  sensors_plus: ^1.3.0
 
 flutter_icons:
   image_path: "assets/google.png"
