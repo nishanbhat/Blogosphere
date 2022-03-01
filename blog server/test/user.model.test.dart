@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:blog_app/models/User.dart';
+import 'package:blogapp/models/User.model.dart';
 
 void main() {
   group('fromJson', () {
