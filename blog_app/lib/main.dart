@@ -3,7 +3,7 @@ import 'package:blog_app/screen/CommentScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:blog_app/pages/WelcomePage.dart';
 import 'package:blog_app/pages/SignUpPage.dart';
 import 'package:blog_app/pages/SignInPage.dart';
@@ -22,6 +22,21 @@ import 'package:blog_app/widgets/Otp.dart';
 import 'package:blog_app/widgets/ResetPassword.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  AwesomeNotifications().initialize(null, // icon for your app notification
+      [
+        NotificationChannel(
+            channelKey: 'key1',
+            channelName: 'keyword',
+            channelDescription: "Notification example",
+            defaultColor: const Color(0XFF9050DD),
+            ledColor: Colors.white,
+            playSound: true,
+            enableLights: true,
+            importance: NotificationImportance.High,
+            enableVibration: true)
+      ]);
   runApp(MyApp());
 }
 

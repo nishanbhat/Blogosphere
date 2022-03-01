@@ -7,12 +7,26 @@ import 'package:blog_app/NetworkHandler.dart';
 import 'package:blog_app/pages/SignUpPage.dart';
 import 'package:blog_app/pages/HomePage.dart';
 import 'package:blog_app/pages/ForgotPassword.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 class SignInPage extends StatefulWidget {
   static const routeName = '/sign-in';
 
   @override
   _SignInPageState createState() => _SignInPageState();
+}
+
+void notify() async {
+  await AwesomeNotifications().createNotification(
+    content: NotificationContent(
+        id: 1,
+        channelKey: 'key1',
+        title: 'Just a notification',
+        body: 'YOu just signed in',
+        notificationLayout: NotificationLayout.BigPicture,
+        bigPicture:
+            'https://images.idgesg.net/images/article/2019/01/android-q-notification-inbox-100785464-large.jpg?auto=webp&quality=85,70%27),
+  );
 }
 
 class _SignInPageState extends State<SignInPage> {
@@ -182,6 +196,7 @@ class _SignInPageState extends State<SignInPage> {
                           setState(() {
                             validate = true;
                             circular = false;
+                            notify();
                           });
                           // Navigator.pushAndRemoveUntil(
                           //     context,
